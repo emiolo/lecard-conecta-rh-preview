@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/lecard-conecta-rh-preview/favicon.png" />
     <title>LeCard Conecta RH — protótipo</title>
+    <script>
+      // Recuperação de cache. O GitHub Pages guarda este HTML por 10 minutos;
+      // se ele vier do cache apontando para um bundle de uma publicação
+      // anterior, o script falha e a tela fica em branco. Aqui a falha é
+      // detectada, o HTML é revalidado ignorando o cache e a página recarrega
+      // uma única vez (a trava em sessionStorage evita laço de recarga).
+      window.addEventListener(
+        "error",
+        function (evento) {
+          var alvo = evento.target;
+          if (!alvo || alvo.tagName !== "SCRIPT" || !alvo.src) return;
+          if (sessionStorage.getItem("lc-cache-recuperado")) return;
+          sessionStorage.setItem("lc-cache-recuperado", "1");
+          fetch(location.href, { cache: "reload" })
+            .catch(function () {})
+            .then(function () {
+              location.reload();
+            });
+        },
+        true
+      );
+    </script>
     
     <meta name="description" content="Protótipo navegável do LeCard Conecta RH: hub de benefícios para o RH, aplicativo do colaborador e backoffice de integrações.">
     <meta name="robots" content="noindex, nofollow">
